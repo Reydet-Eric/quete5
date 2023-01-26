@@ -1,0 +1,33 @@
+<h1>Formulaire d'inscription</h1>
+<form (ngSubmit)="onSubmit()" #myForm="ngForm">
+
+<fieldset>
+<label for="firstName">Nom de famille: </label>
+<input type="text" id="firstName" name="firstName"  [(ngModel)]="candidat.firstName" required minlength="3" maxlength="15" #firstName="ngModel">
+</fieldset>
+<div class="red" *ngIf="firstName.errors">
+  <span *ngIf="firstName.errors?.['required']">Le nom est requis</span>
+  <span *ngIf="firstName.errors?.['minlength']">La longueur minimale doit être supérieure à 3</span>
+</div>
+<fieldset>
+<label for="lastName">Prénom: </label>
+<input type="text" id="lastName" name="lastName" [(ngModel)]="candidat.lastName" required minlength="3" maxlength="15" #lastName="ngModel">
+</fieldset>
+<div class="red" *ngIf="lastName.errors">
+  <span *ngIf="lastName.errors?.['required']">Le prénom est requis</span>
+  <span *ngIf="lastName.errors?.['minlength']">La longueur minimale doit être supérieure à 3</span>
+</div>
+<fieldset>
+<label for="email">Email: </label>
+<input type="email" id="email" name="email" [(ngModel)]="candidat.email" required email #email="ngModel">
+</fieldset>
+<div class="red" *ngIf="email.errors">email non valide</div>
+<fieldset>
+<label for="password">Mot de passe: </label>
+<input type="password" id="password" name="password" [(ngModel)]="candidat.password" required>
+
+</fieldset>
+
+<button *ngIf="myForm.valid" type="submit">Valider l'inscription</button><br>
+
+</form>
